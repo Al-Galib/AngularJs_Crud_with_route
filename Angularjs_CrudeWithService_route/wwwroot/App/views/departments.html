@@ -1,0 +1,44 @@
+﻿<div class="row">
+    <div class="col">
+        <h3 class="display-5">Departmens</h3>
+        <div class="d-flex justify-content-end mb-1">
+            <a href="#!/createDept" class="btn btn-primary btn-sm">Create New</a>
+        </div>
+        <table class="table table-bordered">
+            <thead class="table-light">
+                <tr>
+                    <th>Dept. Id</th>
+                    <th>Dept. Name</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="dept in model.departments">
+                    <td>{{dept.departmentId}}</td>
+                    <td>{{dept.departmentName}}</td>
+                    <td>
+                        <a href="#!/editDept/{{dept.departmentId}}" class="btn btn-primary btn-sm">Edit</a>
+                        <button ng-click="confirmDeptDel(dept)" class="btn btn-danger btn-sm">De</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="modal" tabindex="-1" id="deptDelModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header bg-danger text-white">
+                        <h5 class="modal-title">Modal title</h5>
+                        <!--<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure to delete?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" ng-click="cancelDeptDel()">Close</button>
+                        <button type="button" class="btn btn-primary" ng-click="delDept()">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+﻿<div class="row" ng-controller="editDeptCtrl">
+    <div class="col-12">
+        <h3 class="display-5">Edit Dept</h3>
+        <div class="alert alert-success alert-dismissible fade show" role="alert" ng-show="modelError">
+            {{modelError}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <form name="cdForm">
+            <div class="form-group row mb-1">
+                <label class="col-form-label col-2">Dept. Name</label>
+                <div class="col-4">
+                    <input class="form-control" name="deptName" ng-model="deptObj.departmentName" ng-maxlength="40" required />
+                    <div class="text-danger" ng-show="!cdForm.deptName.$pristine && cdForm.deptName.$error.maxlength">Only 40 characters allowed.</div>
+                    <div class="text-danger" ng-show="!cdForm.deptName.$pristine && cdForm.deptName.$error.required">This field is required.</div>
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+
+                <div class="col-10 offset-2">
+                    <button type="submit" class="btn btn-primary" ng-disabled="cdForm.$invalid" ng-click="updateDept(cdForm)">Update</button>
+                </div>
+            </div>
+        </form>
+        <div class="col-12">
+            <a href="#!/departments">Back to department list</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+﻿<div class="row" ng-controller="editEmpCtrl">
+    <div class="col-12">
+        <h3 class="display-5">Create Employee</h3>
+        <div class="alert alert-success alert-dismissible fade show" role="alert" ng-if="modelError">
+            {{modelError}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <form name="ceForm">
+            <div class="form-group row mb-1">
+                <label class="col-form-label col-2">Emp. Name</label>
+                <div class="col-4">
+                    <input class="form-control" name="empName" ng-model="empObj.employeeName" ng-maxlength="40" required />
+                    <div class="text-danger" ng-show="!ceForm.empName.$pristine && ceForm.empName.$error.maxlength">Only 40 characters allowed.</div>
+                    <div class="text-danger" ng-show="!ceForm.empName.$pristine && ceForm.empName.$error.required">This field is required.</div>
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+                <label class="col-form-label col-2">Join Date</label>
+                <div class="col-4">
+                    <!--<input class="form-control" name="empJoin" ng-model="empObj.joinDate" required />-->
+
+                    <datepicker date-format="yyyy-MM-dd">
+                        <input ng-model="empObj.joinDate" type="text" class="form-control" />
+                    </datepicker>
+
+
+
+                    <div class="text-danger" ng-show="!ceForm.empJoin.$pristine && ceForm.empJoin.$error.required">This field is required.</div>
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+                <label class="col-form-label col-2">Dept.</label>
+                <div class="col-4">
+                    <select class="form-select" name="deptId" ng-model="empObj.departmentId" required ng-options="dept.departmentId as dept.departmentName for dept in model.departments"></select>
+
+                    <div class="text-danger" ng-show="!ceForm.deptId.$pristine && ceForm.deptId.$error.required">This field is required.</div>
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+
+                <div class="col-10 offset-2">
+                    <button type="submit" class="btn btn-primary" ng-disabled="ceForm.$invalid" ng-click="updateEmployee(ceForm)">Update</button>
+                </div>
+            </div>
+        </form>
+        <div class="col-12">
+            <a href="#!/employees">Back to employee list</a>
+        </div>
+    </div>
+</div>

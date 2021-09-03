@@ -1,0 +1,49 @@
+﻿<div class="row">
+    <div class="col">
+        <h3 class="display-6 fs-1">Employees</h3>
+        <div class="d-flex justify-content-end mb-1">
+            <a href="#!/createEmployee" class="btn btn-primary btn-sm">Create New</a>
+        </div>
+        <table class="table table-bordered">
+            <thead class="table-light">
+                <tr>
+                    <th>Emp. Id</th>
+                    <th>Emp. Name</th>
+                    <th>Join Date</th>
+                    <th>Department</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="emp in model.employees">
+                    <td>{{emp.employeeId}}</td>
+                    <td>{{emp.employeeName}}</td>
+                    <td>{{emp.joinDate | date: 'yyyy-MM-dd'}}</td>
+                    <td>{{getDeptName(emp.departmentId)}}</td>
+                    <td>
+                        <a href="#!/editEmployee/{{emp.employeeId}}" class="btn btn-primary btn-sm"><i class="bi bi-pencil"></i></a>
+                        <button ng-click="confirmEmpDel(emp)" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+    </div>
+    <div class="modal" tabindex="-1" id="empDelModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title">Modal title</h5>
+                    <!--<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure to delete?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" ng-click="cancelEmpDel()">Close</button>
+                    <button type="button" class="btn btn-primary" ng-click="delEmp()">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
